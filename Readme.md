@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Илья Филонов](https://up.htmlacademy.ru/react/6/user/896721).
-* Наставник: `Неизвестно`.
+* Наставник: [Иван Шалагин](https://up.htmlacademy.ru/react/6/user/386947).
 
 ---
 
