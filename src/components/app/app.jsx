@@ -1,35 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Menu from '../menu/menu';
-import Map from "../map/map";
-import Tabs from "../tabs/tabs";
-import Cities from "../cities/cities";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import Login from "../login/login";
+import Main from "../main/main";
+import PropertyRoom from "../property-room/property-room";
+import Favorites from "../favorites/favorites";
+import PageNotFound from "../page-not-found/page-not-found";
 
 const App = (props) => {
   const {cardCount} = props;
 
   return (
-    <div className="page page--gray page--main">
-      <header className="header">
-        <div className="container">
-          <Menu />
-        </div>
-      </header>
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <Tabs />
-        </div>
-        <div className="cities">
-          <div className="cities__places-container container">
-            <Cities
-              cardCount={cardCount}
-            />
-            <Map/>
-          </div>
-        </div>
-      </main>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact>
+          <Main cardCount={cardCount} />
+        </Route>
+        <Route path="/login" exact>
+          <Login />
+        </Route>
+        <Route path="/offer/:id?" exact>
+          <PropertyRoom />
+        </Route>
+        <Route path="/favorites" exact>
+          <Favorites />
+        </Route>
+        <Route>
+          <PageNotFound/>
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
