@@ -1,16 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Card from "../citites-card/cities-card";
+import {offerPropTypes} from "../../propTypes/offer";
+import OffersList from "../offers-list/offers-list";
 
 const Cities = (props) => {
-  const {cardCount} = props;
-
-  const cardsArray = new Array(cardCount).fill(null);
+  const {offers} = props;
 
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{cardCount} places to stay in Amsterdam</b>
+      <b className="places__found">{} places to stay in Amsterdam</b>
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by </span>
         <span className="places__sorting-type" tabIndex="0">
@@ -26,17 +25,15 @@ const Cities = (props) => {
           <li className="places__option" tabIndex="0">Top rated first</li>
         </ul>
       </form>
-      <div className="cities__places-list places__list tabs__content">
-        {cardsArray.map(function (item, index) {
-          return (< Card key={`card-` + index} />);
-        })}
-      </div>
+      <OffersList
+        offers={offers}
+      />
     </section>
   );
 };
 
 Cities.propTypes = {
-  cardCount: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired
 };
 
 export default Cities;

@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {offerPropTypes} from "../../propTypes/offer";
 import Menu from '../menu/menu';
 import Map from "../map/map";
 import Tabs from "../tabs/tabs";
 import Cities from "../cities/cities";
 
 const Main = (props) => {
-  const {cardCount} = props;
+  const {offers} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -23,7 +24,7 @@ const Main = (props) => {
         <div className="cities">
           <div className="cities__places-container container">
             <Cities
-              cardCount={cardCount}
+              offers={offers}
             />
             <Map/>
           </div>
@@ -34,8 +35,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  cardCount: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired
 };
-
 
 export default Main;

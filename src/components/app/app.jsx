@@ -1,5 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
+import {offerPropTypes} from "../../propTypes/offer";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Login from "../login/login";
 import Main from "../main/main";
@@ -8,13 +9,15 @@ import Favorites from "../favorites/favorites";
 import PageNotFound from "../page-not-found/page-not-found";
 
 const App = (props) => {
-  const {cardCount} = props;
+  const {offers} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          <Main cardCount={cardCount} />
+          <Main
+            offers={offers}
+          />
         </Route>
         <Route path="/login" exact>
           <Login />
@@ -23,7 +26,9 @@ const App = (props) => {
           <PropertyRoom />
         </Route>
         <Route path="/favorites" exact>
-          <Favorites />
+          <Favorites
+            offers={offers}
+          />
         </Route>
         <Route>
           <PageNotFound/>
@@ -34,7 +39,7 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  cardCount: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired
 };
 
 export default App;
