@@ -9,6 +9,7 @@ import Favorites from "../favorites/favorites";
 import PageNotFound from "../page-not-found/page-not-found";
 
 import {offersNearbyId0} from "../../mocks/offers-nearby-id-0";
+import {reviewsId0} from "../../mocks/reviews-id-0";
 
 const App = (props) => {
   const {offers} = props;
@@ -28,6 +29,7 @@ const App = (props) => {
           <PropertyRoom
             offer={offers[0]}
             offersNearby={offersNearbyId0}
+            reviews={reviewsId0}
           />
         </Route>
         <Route path="/favorites" exact>
