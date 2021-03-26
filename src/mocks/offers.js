@@ -2,7 +2,7 @@ const urlAvatar = `https://i.pravatar.cc/128`;
 
 export const offers = [
   {
-    bedrooms: 3,
+    bedrooms: 1,
     city: {
       location: {
         latitude: 52.370216,
@@ -28,7 +28,7 @@ export const offers = [
       longitude: 4.673877537499948,
       zoom: 8
     },
-    maxAdults: 4,
+    maxAdults: 5,
     previewImage: `http://picsum.photos/248/152?r=${Math.random()}`,
     price: 1200,
     rating: 2.3,

@@ -18,6 +18,7 @@ const CommentForm = () => {
     comment: ``,
     rating: 0
   });
+
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
