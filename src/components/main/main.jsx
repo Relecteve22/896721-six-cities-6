@@ -26,7 +26,9 @@ const Main = (props) => {
             <Cities
               offers={offers}
             />
-            <Map/>
+            <Map
+              offers={offers}
+            />
           </div>
         </div>
       </main>

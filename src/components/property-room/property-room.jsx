@@ -1,9 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Menu from "../menu/menu";
 import CommentForm from "../form-post-comment/form-post-comment";
+import MapPropertyRoom from "../map-property-room/map-property-room";
 import {offerPropTypes} from "../../propTypes/offer";
 
-const PropertyRoom = ({offer}) => {
+const PropertyRoom = ({offer, offersNearby}) => {
   const {maxAdults, bedrooms, isFavorite, rating, title, isPremium, images, type, price, goods} = offer;
 
   const ratingInPercentages = ((rating / 5) * 100) + `%`;
@@ -132,14 +134,18 @@ const PropertyRoom = ({offer}) => {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          {/* <section className="property__map map"></section> */}
+          <MapPropertyRoom
+            offerActive={offer}
+            offersNearby={offersNearby}
+          />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
               <article className="near-places__card place-card">
-                <div className="near-places__image-wrapper place-card__image-wrapper">
+                <div className="near-places__image-wrapper place-__image-wrapper">
                   <a href="#">
                     <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image"/>
                   </a>
@@ -242,7 +248,8 @@ const PropertyRoom = ({offer}) => {
 };
 
 PropertyRoom.propTypes = {
-  offer: offerPropTypes
+  offer: offerPropTypes,
+  offersNearby: PropTypes.arrayOf(offerPropTypes).isRequired
 };
 
 export default PropertyRoom;

@@ -1,16 +1,16 @@
 import React, {useEffect, useRef} from "react";
-import PropTypes from "prop-types";
 import {offerPropTypes} from "../../propTypes/offer";
+import PropTypes from "prop-types";
 import leaflet from 'leaflet';
 
 import "leaflet/dist/leaflet.css";
 
-const Map = ({offers}) => {
-  const {city} = offers[0];
+const MapPropertyRoom = ({offerActive, offersNearby}) => {
+  const {city} = offerActive;
   const mapRef = useRef();
 
   useEffect(() => {
-    mapRef.current = leaflet.map(`map`, {
+    mapRef.current = leaflet.map(`map-property-room`, {
       center: {
         lat: city.location.latitude,
         lng: city.location.longitude
@@ -24,7 +24,12 @@ const Map = ({offers}) => {
       })
       .addTo(mapRef.current);
 
-    offers.forEach((offer) => {
+    const customIconActive = leaflet.icon({
+      iconUrl: `./img/pin-active.svg`,
+      iconSize: [27, 39]
+    });
+
+    offersNearby.forEach((offer) => {
       const customIcon = leaflet.icon({
         iconUrl: `./img/pin.svg`,
         iconSize: [27, 39]
@@ -44,20 +49,36 @@ const Map = ({offers}) => {
         mapRef.current.remove();
       };
     });
+
+    leaflet.marker({
+      lat: offerActive.location.latitude,
+      lng: offerActive.location.longitude
+    },
+    {
+      icon: customIconActive
+    })
+    .addTo(mapRef.current)
+    .bindPopup(offerActive.title);
+
   }, []);
 
   return (
-    <div className="cities__right-section">
-      <div id="map" style={{
-        height: `100%`,
-        width: `100%`
+    <section className="map" style={{
+      width: `1144px`,
+      height: `579px`,
+      margin: `0 auto`,
+      marginBottom: `50px`
+    }}>
+      <div id="map-property-room" style={{
+        width: `100%`,
+        height: `100%`
       }} ref={mapRef}></div>
-    </div>
+    </section>
   );
 };
-
-Map.propTypes = {
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired
+MapPropertyRoom.propTypes = {
+  offerActive: offerPropTypes,
+  offersNearby: PropTypes.arrayOf(offerPropTypes).isRequired
 };
 
-export default Map;
+export default MapPropertyRoom;
